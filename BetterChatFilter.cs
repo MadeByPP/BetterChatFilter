@@ -230,22 +230,19 @@ namespace Oxide.Plugins
             {
                 if (PlayerOffenses.ContainsKey(player.Id))
                 {
+                        if (MuteCount !=0)
+                        {
+                        player.Reply(string.Format(GetLang("OffenseWarning", player.Id), PlayerOffenses[player.Id].offenses + 1));
+                        }
                     if (KickCount >= PlayerOffenses[player.Id].offenses)
                     {
                         if (BroadcastKick)
                         {
-                            if (KickCount == 0)
+                            if (KickCount != 0)
                             {
-                                player.Reply(string.Format(GetLang("OffenseWarning", player.Id), PlayerOffenses[player.Id].offenses + 1));
-                            }
-                            else
-                            {
-
                                 player.Reply(string.Format(GetLang("OffenseWarningKick", player.Id), PlayerOffenses[player.Id].offenses + 1, KickCount));
-
                             }
                         }                     
-
                     }
                     if (BroadcastBan)
                     {
